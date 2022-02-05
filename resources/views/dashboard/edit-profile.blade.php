@@ -1,8 +1,6 @@
 @extends('layouts.master')
 
-@section('title')
-    Dashboard
-@endsection
+@section('title', 'Edit Profile')
 
 @section('admin-menu')
     @foreach ($user->roles as $role)

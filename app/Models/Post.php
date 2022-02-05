@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\User;
 use App\Models\Comment;
+use App\Models\Category;
 
 class Post extends Model
 {
@@ -13,7 +14,8 @@ class Post extends Model
 
     protected $fillable = [
         'title',
-        'body'
+        'body',
+        'image'
     ];
     
     public function user(){
@@ -23,5 +25,9 @@ class Post extends Model
 
     public function comments(){
         return $this->hasMany(Comment::class);
+    }
+
+    public function category(){
+        return $this->belongsTo(Category::class);
     }
 }

@@ -1,3 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+    <script src="{{ asset('js/app.js') }}"></script>
+    <title>@yield('title')</title>
+</head>
+<body>
+
+
+    {{-- HEADER --}}
+    <div class="w-full bg-slate-900 p-5">
+        <div class="container sm:mx-auto flex">
+            <h2 class="text-white font-bold text-xl">Blog Project</h2>
+            <nav class="ml-auto">
+                @if (!Auth::check())
+                    <a href="{{ url('/') }}" class="text-white hover:text-yellow-500 mr-5">Home</a>
+                    <a href="{{ route('login') }}" class="text-white hover:text-yellow-500 mr-5">Login</a>
+                    <a href="{{ route('register') }}" class="text-white hover:text-yellow-500">Register</a>
+                @endif
+            </nav>
+        </div>
+    </div>
+    {{-- HEADER END --}}
+
+
+
+
 <x-guest-layout>
     <x-auth-card>
         <x-slot name="logo">
@@ -56,3 +87,8 @@
         </form>
     </x-auth-card>
 </x-guest-layout>
+
+
+
+</body>
+</html>

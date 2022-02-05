@@ -13,13 +13,18 @@
     {{-- HEADER --}}
     <div class="w-full bg-slate-900 p-5">
         <div class="container sm:mx-auto flex">
-            <h2 class="text-white font-bold text-xl">Blog Project</h2>
+            <div class="flex text-white font-bold text-xl">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 10l-2 1m0 0l-2-1m2 1v2.5M20 7l-2 1m2-1l-2-1m2 1v2.5M14 4l-2-1-2 1M4 7l2-1M4 7l2 1M4 7v2.5M12 21l-2-1m2 1l2-1m-2 1v-2.5M6 18l-2-1v-2.5M18 18l2-1v-2.5" />
+                </svg>
+                <span class="ml-3">WebTech</span>
+            </div>
             
             {{-- LOGOUT BTN--}}
             <nav class="ml-auto">
-                <a href="{{ url('/') }}" class="text-sm text-gray-300 ml-8">Home</a>
+                <a href="{{ url('/') }}" class="text-white hover:text-yellow-500 mr-5">Home</a>
                 <a class="text-white px-3 hover:text-yellow-400" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                    <span class="bg-yellow-500 hover:bg-yellow-400 text-white p-2 rounded">Logout</span>
+                    <span class="border border-yellow-500 hover:bg-yellow-400 text-white p-2 rounded-md">Logout</span>
                 </a>
                 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                     @csrf
@@ -41,9 +46,16 @@
             </div>
             <h2 class="text-lg font-bold text-slate-700 mt-7 mb-14">{{ Auth::User()->name }}</h2>
             <a class="text-slate-600 hover:bg-slate-600 hover:text-white p-2 rounded transition ease-in-out" href="{{ route('dashboard') }}">My Posts</a>
-            <a class="text-slate-600 hover:bg-slate-600 hover:text-white p-2 rounded transition ease-in-out" href="{{ route('posts.all') }}">View all posts</a>
+            {{-- <a class="text-slate-600 hover:bg-slate-600 hover:text-white p-2 rounded transition ease-in-out" href="{{ route('posts.all') }}">View all posts</a> --}}
             <a class="text-slate-600 hover:bg-slate-600 hover:text-white p-2 rounded transition ease-in-out" href="{{ route('post.create') }}">Create new post</a>
             <a class="text-slate-600 hover:bg-slate-600 hover:text-white p-2 rounded transition ease-in-out" href="{{ route('profile.settings', Auth::User()->id) }}">Profile Settings</a>
+
+            
+               
+               
+                
+
+
             @yield('admin-menu')
         </div>
 
@@ -56,12 +68,13 @@
 
         <div class="sm:col-span-3 p-7 border shadow-md">
 
-                <h2 class="text-lg text-white p-3 mb-10 bg-slate-600">Latest Posts</h2>
+                <h1 class="text-gray-800 text-2xl mb-5">Latest Posts</h1>
 
                 @foreach ($posts as $post)
                     
                         <li class="mb-5">
-                            <a href="{{ url('post/'.$post->id) }}">{{ $post->title }}</a>
+                            <a href="{{ url('post/'.$post->id) }}" class="font-bold">{{ $post->title }}</a>
+                            <p class="italic text-sm">posted by {{ $post->user->name}}, {{ $post->created_at->diffForHumans()}}</p>
                         </li>
                     
                 @endforeach

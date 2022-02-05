@@ -1,8 +1,6 @@
 @extends('layouts.master')
 
-@section('title')
-    Dashboard
-@endsection
+@section('title', 'Edit Post')
 
 @section('admin-menu')
     @foreach ($user_role as $role)
@@ -15,8 +13,19 @@
 
 @section('content')
 
-    <form method="post" action="{{ route('post.update', $post->id) }}">
+    <form method="post" action="{{ route('post.update', $post->id) }}" enctype="multipart/form-data">
         @csrf
+        <div class="flex w-full mb-5">
+            <label for="category" class="w-1/6">Post Category: </label>
+            <select id="category" type="text" name="category" class="w-3/6">
+                @foreach ($categories as $category)
+                    <option name="category" value="{{ $category->id }}">{{ $category->name }}</option>
+                @endforeach
+            </select>
+            @error('category')
+                <div class="text-red-700">* {{ $message }}</div>
+            @enderror
+        </div>
         <div class="flex w-full mb-5">
             <label for="title" class="w-1/6">Post Title: </label>
             <input id="title" type="text" name="title" placeholder="" value="{{ $post->title }}" class="w-5/6">
@@ -29,6 +38,13 @@
             <textarea id="body" name="body" placeholder="" value="" class="w-5/6 h-96">{{ $post->body }}</textarea>
             @error('body')
                 <div class="text-red-500">* {{ $message }}</div>
+            @enderror
+        </div>
+        <div class="flex w-full mb-5">
+            <label for="image" class="w-1/6">Post image: </label>
+            <input id="image" type="file" name="image" placeholder="" class="w-3/6">
+            @error('name')
+                <div class="text-red-700">* {{ $message }}</div>
             @enderror
         </div>
         <div class="flex w-full mb-5">

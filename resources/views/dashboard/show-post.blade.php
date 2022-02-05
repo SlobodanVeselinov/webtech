@@ -20,7 +20,11 @@
                 </div>
             @endif
     <h1 class="font-bold text-xl">{{ $post->title }}</h1>
-    <span class="italic text-gray-800 text-sm">Created at {{ $post->created_at }} by {{ $post->user->name }}</span>
+    <span class="italic text-gray-800 text-sm">
+        Created at {{ $post->created_at }} by {{ $post->user->name }}
+    </span>
+    <p>Category: {{ $post->category->name }}</p>
+    <img src="{{ asset('images/posts/'.$post->image) }}" class="mt-10 md:h-96 shadow-xl">
     <p class="mt-10">{{ $post->body }}</p>
     
     <p class="mt-10">

@@ -1,8 +1,6 @@
 @extends('layouts.master')
 
-@section('title')
-    Dashboard
-@endsection
+@section('title', 'Users Infomation')
 
 @section('admin-menu')
     @foreach ($user_role as $role)
@@ -16,7 +14,7 @@
 @section('content')
 
         <div class="flex">
-            <h2 class="text-lg text-gray-800 font-bold mb-10">User Information</h2>
+            <h2 class="text-lg text-gray-800 font-bold mb-10">User profile information</h2>
             
         </div>
 

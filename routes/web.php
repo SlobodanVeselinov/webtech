@@ -18,7 +18,7 @@ use App\Http\Controllers\HomePostController;
 
 Route::get('/', [HomePostController::class, 'index'])->name('home.index');
 
-Route::get('/post', [HomePostController::class, 'view_post'])->name('view.post');
+Route::get('/public/post/{id}', [HomePostController::class, 'view_post'])->name('home.post.view');
 
 
 

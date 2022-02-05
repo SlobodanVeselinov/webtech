@@ -54,7 +54,7 @@ class AdminController extends Controller
         $posts = Post::latest()->get();
 
         //return redirect('/dashboard');
-        return back();
+        return redirect()->route('users.get');
 
     }
 
@@ -94,10 +94,10 @@ class AdminController extends Controller
 
 
         if($request->image){
-        $newImageName = time() . '-' . $user->id . '.' . $request->image->extension(); 
+            $newImageName = time() . '-' . $user->id . '.' . $request->image->extension(); 
 
-        $request->image->move(public_path('images'), $newImageName);
-        $user->image = $newImageName;
+            $request->image->move(public_path('images'), $newImageName);
+            $user->image = $newImageName;
         }
 
         $user->name = $request->name;
