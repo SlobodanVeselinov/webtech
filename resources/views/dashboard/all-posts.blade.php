@@ -2,14 +2,6 @@
 
 @section('title', 'All Posts')
 
-@section('admin-menu')
-    @foreach ($user_role as $role)
-         @if ($role->name == 'Administrator')
-            <a class="text-slate-600 hover:bg-slate-600 hover:text-white p-2 rounded transition ease-in-out" href="{{ route('users.get') }}">View registered users</a>
-        @endif
-    @endforeach    
-@endsection
-
 
 @section('content')
     <h2 class="text-xl font-bold text-gray-800 mb-10 p-3">All Posts</h2>

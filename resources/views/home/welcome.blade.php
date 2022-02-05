@@ -1,5 +1,7 @@
 @extends('layouts.front')
 
+@section('title', 'WebTech')
+
 @section('mainContent')
     
     @foreach ($posts as $post) 

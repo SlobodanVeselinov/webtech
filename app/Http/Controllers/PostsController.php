@@ -12,11 +12,9 @@ class PostsController extends Controller
 {
     public function index(){
 
-        $user = User::find(Auth::user()->id);
-        $user_role = $user->roles;
         $categories = Category::all();
 
-        return view('dashboard.create-post', compact('user_role', 'categories'));
+        return view('dashboard.create-post', compact('categories'));
     }
 
 
@@ -48,18 +46,14 @@ class PostsController extends Controller
 
     public function view_all(){
         $posts = Post::orderBy('id', 'desc')->paginate(5);
-        $user = User::find(Auth::user()->id);
-        $user_role = $user->roles;
 
-        return view('dashboard.all-posts', compact('posts', 'user_role'));
+        return view('dashboard.all-posts', compact('posts'));
     }
 
 
     public function show_post($id){
         $post = Post::find($id);
-        $user = User::find(Auth::user()->id);
-        $user_role = $user->roles;
-        return view('dashboard.show-post', compact('post', 'user_role'));
+        return view('dashboard.show-post', compact('post'));
     }
 
 
@@ -73,10 +67,8 @@ class PostsController extends Controller
 
     public function edit_post($id){
         $post = Post::find($id);
-        $user = User::find(Auth::user()->id);
-        $user_role = $user->roles;
         $categories = Category::all();
-        return view('dashboard.edit-post', compact('post', 'user_role', 'categories'));
+        return view('dashboard.edit-post', compact('post','categories'));
     }
 
     public function update_post(Request $request, $id){

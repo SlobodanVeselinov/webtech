@@ -31,7 +31,7 @@ class LatestPostProvider extends ServiceProvider
     {
         $this->latest_posts = Post::orderBy('id', 'desc')->take(10)->get();
         $this->posts = Post::all();
-        $this->categories = Category::orderBy('order_number', 'asc')->get();
+        $this->categories = Category::where('order_number', '>', 0)->orderBy('order_number', 'asc')->get();
 
         view()->composer('layouts.front', function($view) {
             $view->with(['latest_posts' => $this->latest_posts, 

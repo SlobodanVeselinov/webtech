@@ -13,21 +13,14 @@ class AdminController extends Controller
     public function get_users(){
         $users = User::all();
 
-        $user = User::find(Auth::user()->id);
-        $user_role = $user->roles;
-
-
-        return view('dashboard.users', compact('users', 'user_role'));
+        return view('dashboard.users', compact('users'));
     }
 
 
     public function show_user($id){
         $selected_user = User::find($id);
 
-        $user = User::find(Auth::user()->id);
-        $user_role = $user->roles;
-
-        return view('dashboard.users-info', compact('selected_user', 'user_role'));
+        return view('dashboard.users-info', compact('selected_user'));
     }
 
 
@@ -35,10 +28,9 @@ class AdminController extends Controller
         $selected_user = User::find($id);
         $roles = Role::all();
 
-        $user = User::find(Auth::user()->id);
-        $user_role = $user->roles;
+        // $user = User::find(Auth::user()->id);
 
-        return view('dashboard.user-edit', compact('selected_user', 'user_role', 'roles'));
+        return view('dashboard.user-edit', compact('selected_user', 'roles'));
         
     }
 

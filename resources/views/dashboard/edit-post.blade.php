@@ -2,15 +2,6 @@
 
 @section('title', 'Edit Post')
 
-@section('admin-menu')
-    @foreach ($user_role as $role)
-         @if ($role->name == 'Administrator')
-            <a class="text-slate-600 hover:bg-slate-600 hover:text-white p-2 rounded transition ease-in-out" href="{{ route('users.get') }}">View registered users</a>
-        @endif
-    @endforeach    
-@endsection
-
-
 @section('content')
 
     <form method="post" action="{{ route('post.update', $post->id) }}" enctype="multipart/form-data">
@@ -19,7 +10,12 @@
             <label for="category" class="w-1/6">Post Category: </label>
             <select id="category" type="text" name="category" class="w-3/6">
                 @foreach ($categories as $category)
-                    <option name="category" value="{{ $category->id }}">{{ $category->name }}</option>
+                    <option name="category" 
+                            value="{{ $category->id }}"
+                            @if($post->category_id == $category->id)
+                                selected
+                            @endif
+                            >{{ $category->name }}</option>
                 @endforeach
             </select>
             @error('category')

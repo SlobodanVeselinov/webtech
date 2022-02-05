@@ -4,13 +4,7 @@
     {{ $post->title }}
 @endsection
 
-@section('admin-menu')
-    @foreach ($user_role as $role)
-         @if ($role->name == 'Administrator')
-            <a class="text-slate-600 hover:bg-slate-600 hover:text-white p-2 rounded transition ease-in-out" href="{{ route('users.get') }}">View registered users</a>
-        @endif
-    @endforeach    
-@endsection
+
 
 @section('content')
 
@@ -24,11 +18,13 @@
         Created at {{ $post->created_at }} by {{ $post->user->name }}
     </span>
     <p>Category: {{ $post->category->name }}</p>
-    <img src="{{ asset('images/posts/'.$post->image) }}" class="mt-10 md:h-96 shadow-xl">
+    @if($post->image)
+        <img src="{{ asset('images/posts/'.$post->image) }}" class="mt-10 md:h-96 shadow-xl">
+    @endif
     <p class="mt-10">{{ $post->body }}</p>
     
     <p class="mt-10">
-        @foreach ($user_role as $role)
+        @foreach (auth()->user()->roles as $role)
          @if ($role->name == 'Administrator' || Auth::User()->id == $post->user_id)
             <a href="{{ route('edit.post', $post->id) }}" class="py-2 px-3 bg-blue-600 text-white rounded">Edit Post</a>
             <a href="{{ route('delete.post', $post->id) }}" class="py-2 px-3 bg-red-600 text-white rounded">Delete Post</a>   

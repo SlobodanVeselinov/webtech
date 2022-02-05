@@ -53,16 +53,20 @@
     </div>
     {{-- NAVIGATION END --}}
 
-
+    {{-- MAIN AREA --}}
     <div class="container mx-auto lg:grid lg:grid-cols-12 lg:mt-20">
 
+        {{-- MAIN SECTION --}}
         <div class="md:grid md:col-span-8 p-3 text-justify text-lg">
             @yield('mainContent')
         </div>
+        {{-- MAIN SECTION ENDS --}}
 
         <div class="md:grid md:col-span-1">
         </div>
 
+
+        {{-- RIGHT SIDE CONTENT AREA --}}
         <div class="md:grid md:col-span-3 p-3  content-start">
             <h1 class="text-gray-800 text-2xl mb-5">Latest Posts</h1>
             @foreach ($latest_posts as $post)
@@ -80,8 +84,9 @@
                 @endforeach
             </div>
         </div>
-
+        {{-- RIGHT SIDE CONTENT AREA ENDS --}}
+        
     </div>
-
+    {{-- MAIN AREA ENDS --}}
 </body>
 </html>

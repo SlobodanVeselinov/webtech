@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Post;
+use App\Models\category;
 
 class HomePostController extends Controller
 {
@@ -26,6 +27,19 @@ class HomePostController extends Controller
         $post = Post::findOrFail($id);
 
         return view('home.view-post', compact('post'));
+    }
+
+
+
+    public function view_category($id){
+
+        $posts = Post::where('category_id', $id)->orderBy('id', 'desc')->paginate(1);
+
+
+        //return($posts);
+
+        return view('home.category-view', compact('posts'));
+
     }
 
 

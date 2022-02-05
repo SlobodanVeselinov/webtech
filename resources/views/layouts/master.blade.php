@@ -36,6 +36,7 @@
     {{-- HEADER END --}}
 
     {{-- MAIN AREA --}}
+
     <div class="container sm:mx-auto sm:grid sm:grid-cols-12 mt-5">
         
         {{-- SIDE BAR --}}
@@ -45,27 +46,34 @@
                 <img src="{{ asset('images/' . Auth::User()->image) }}" alt="" class="w-36 h-36 rounded-full ml-auto">
             </div>
             <h2 class="text-lg font-bold text-slate-700 mt-7 mb-14">{{ Auth::User()->name }}</h2>
+            
+            {{-- ADMINISTRATOR MENU LINKS --}}
+            @foreach(auth()->user()->roles as $role)
+                @if ($role->name == 'Administrator')
+                    <a class="text-slate-600 hover:bg-slate-600 hover:text-white p-2 rounded transition ease-in-out" href="">Admin Dashboard</a>
+                @endif
+            @endforeach
+            {{-- ----------------------------------------- --}}
+
             <a class="text-slate-600 hover:bg-slate-600 hover:text-white p-2 rounded transition ease-in-out" href="{{ route('dashboard') }}">My Posts</a>
             {{-- <a class="text-slate-600 hover:bg-slate-600 hover:text-white p-2 rounded transition ease-in-out" href="{{ route('posts.all') }}">View all posts</a> --}}
             <a class="text-slate-600 hover:bg-slate-600 hover:text-white p-2 rounded transition ease-in-out" href="{{ route('post.create') }}">Create new post</a>
             <a class="text-slate-600 hover:bg-slate-600 hover:text-white p-2 rounded transition ease-in-out" href="{{ route('profile.settings', Auth::User()->id) }}">Profile Settings</a>
 
-            
-               
-               
-                
-
-
-            @yield('admin-menu')
+            {{-- ADMINISTRATOR MENU LINKS --}}
+                @if ($role->name == 'Administrator')
+                    <a class="text-slate-600 hover:bg-slate-600 hover:text-white p-2 rounded transition ease-in-out" href="{{ route('users.get') }}">View registered users</a>
+                    <a class="text-slate-600 hover:bg-slate-600 hover:text-white p-2 rounded transition ease-in-out" href="{{ route('category.index') }}">View categories</a>
+                @endif
+            {{-- ----------------------------------------- --}}    
         </div>
 
         {{-- MAIN CONTENT AREA --}}
         <div class="sm:col-span-7 p-7">
-
                 @yield('content')
-
         </div>
 
+        {{-- RIGHT SIDE CONTENT AREA --}}
         <div class="sm:col-span-3 p-7 border shadow-md">
 
                 <h1 class="text-gray-800 text-2xl mb-5">Latest Posts</h1>
@@ -73,7 +81,7 @@
                 @foreach ($posts as $post)
                     
                         <li class="mb-5">
-                            <a href="{{ url('post/'.$post->id) }}" class="font-bold">{{ $post->title }}</a>
+                            <a href="{{ url('post/'.$post->id) }}" class="">{{ $post->title }}</a>
                             <p class="italic text-sm">posted by {{ $post->user->name}}, {{ $post->created_at->diffForHumans()}}</p>
                         </li>
                     
