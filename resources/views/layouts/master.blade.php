@@ -64,6 +64,10 @@
                 @if ($role->name == 'Administrator')
                     <a class="text-slate-600 hover:bg-slate-600 hover:text-white p-2 rounded transition ease-in-out" href="{{ route('users.get') }}">View registered users</a>
                     <a class="text-slate-600 hover:bg-slate-600 hover:text-white p-2 rounded transition ease-in-out" href="{{ route('category.index') }}">View categories</a>
+                    <hr>
+                    <a class="text-slate-600 hover:bg-slate-600 hover:text-white p-2 rounded transition ease-in-out" href="{{ route('post.approval') }}">Posts waiting approval
+                        ( {{ count(DB::select('select * from posts where is_approved = 0')) }} )
+                    </a>
                 @endif
             {{-- ----------------------------------------- --}}    
         </div>

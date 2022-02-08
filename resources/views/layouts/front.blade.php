@@ -82,7 +82,7 @@
                     <div class="">
                         <a href="{{ route('home.category.view', $category->id) }}" class="text-blue-800">
                             {{ $category->name }}
-                           ( {{ count(DB::select('select * from posts where category_id ='.$category->id)) }} )
+                           ( {{ count(DB::select('select * from posts where category_id ='.$category->id. ' and is_approved = 1')) }} )
                         </a>
                     </div>
                 @endforeach

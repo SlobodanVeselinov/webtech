@@ -41,7 +41,7 @@ class PostsController extends Controller
         $post->user_id = Auth::user()->id;
         $post->save();
 
-        return redirect('dashboard')->with('success', 'You have created a new post!');
+        return redirect('dashboard')->with('success', 'You have created a new post. The post is waiting to be approved by the adminitrator!');
     }
 
     public function view_all(){
@@ -90,6 +90,25 @@ class PostsController extends Controller
         session()->flash('post-updated', 'Post has been updated.');
         return redirect('/post/' .$post->id);
     }
+
+
+    
+    public function approve_index(){
+
+        $posts = Post::where('is_approved', 0)->get();
+
+        
+        return view('dashboard.post-approval', compact('posts'));
+    }
+
+
+    public function post_approve($id){
+        $post = Post::findOrFail($id);
+        $post->is_approved = 1;
+        $post->save();
+        return redirect('/post/approval');
+    }
+
 
 
 }

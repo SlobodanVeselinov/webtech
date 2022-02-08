@@ -3,8 +3,9 @@
 @section('title', 'WebTech')
 
 @section('mainContent')
-    
-    @foreach ($posts as $post) 
+
+ 
+    @forelse ($posts as $post) 
 
         <div class="border-b-2 text-gray-800 mb-14 pb-10 text-lg">
             <div class="md:grid md:content-center md:gap-5 md:grid-cols-12">
@@ -27,7 +28,7 @@
 
                         {{ count($post->comments) }} comments
                     </span>
-                    Category: <a href="" class="italic text-blue-700">{{ $post->category->name }}</a>
+                    Category: <a href="{{ route('home.category.view', $post->category->id) }}" class="italic text-blue-700">{{ $post->category->name }}</a>
                     
                     <p class="mt-8 mb-8">{{ \Illuminate\Support\Str::limit($post->body, 200, '...') }}</p>
 
@@ -36,10 +37,9 @@
             </div>
 
         </div>
-        
-    @endforeach
-
-
+        @empty
+            <h1 class="text-gray-800 text-2xl mb-5">No posts yet. Be first one to create a post. First login or register!</h1>
+        @endforelse
     {{ $posts->links() }}
 
 @endsection

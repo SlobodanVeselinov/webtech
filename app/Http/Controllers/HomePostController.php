@@ -13,7 +13,7 @@ class HomePostController extends Controller
 
     public function index(){
 
-        $posts = Post::orderBy('id', 'desc')->paginate(5);
+        $posts = Post::where('is_approved', 1)->orderBy('id', 'desc')->paginate(5);
         return view('home.welcome', compact('posts'));
 
     }
@@ -33,7 +33,7 @@ class HomePostController extends Controller
 
     public function view_category($id){
 
-        $posts = Post::where('category_id', $id)->orderBy('id', 'desc')->paginate(5);
+        $posts = Post::where('category_id', $id)->where('is_approved', 1)->orderBy('id', 'desc')->paginate(5);
 
 
         //return($posts);

@@ -29,8 +29,8 @@ class LatestPostProvider extends ServiceProvider
      */
     public function boot()
     {
-        $this->latest_posts = Post::orderBy('id', 'desc')->take(10)->get();
-        $this->posts = Post::all();
+        $this->latest_posts = Post::where('is_approved', 1)->orderBy('id', 'desc')->take(10)->get();
+        $this->posts = Post::where('is_approved', 1);
         $this->categories = Category::where('order_number', '>', 0)->orderBy('order_number', 'asc')->get();
 
         view()->composer('layouts.front', function($view) {

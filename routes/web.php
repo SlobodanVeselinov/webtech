@@ -41,11 +41,14 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/all-post', [PostsController::class, 'view_all'])->name('posts.all');
     Route::get('/users', [AdminController::class, 'get_users'])->name('users.get');
 
+    Route::get('/post/approval', [PostsController::class, 'approve_index'])->name('post.approval');
+    Route::get('/post/{id}/approve', [PostsController::class, 'post_approve'])->name('post.approve');
     Route::get('/post/{id}', [PostsController::class, 'show_post'])->name('show.post');
     Route::get('/post/{id}/delete', [PostsController::class, 'delete_post'])->name('delete.post');
     Route::get('/post/{id}/edit', [PostsController::class, 'edit_post'])->name('edit.post');
     Route::post('/post/{id}/update', [PostsController::class, 'update_post'])->name('post.update');
     Route::post('/post/{post}/comment', [CommentController::class, 'store'])->name('comment.store');
+    
     
     Route::get('/user/{id}', [AdminController::class, 'show_user'])->name('show.user');
     Route::get('/user/{id}/profile', [AdminController::class, 'profile_view'])->name('profile.settings');

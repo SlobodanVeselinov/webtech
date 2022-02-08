@@ -15,7 +15,8 @@ class Post extends Model
     protected $fillable = [
         'title',
         'body',
-        'image'
+        'image',
+        'is_approved'
     ];
     
     public function user(){
@@ -30,4 +31,5 @@ class Post extends Model
     public function category(){
         return $this->belongsTo(Category::class);
     }
+
 }

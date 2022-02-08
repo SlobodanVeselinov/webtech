@@ -1,12 +1,14 @@
 @extends('layouts.master')
 
 @section('title')
-    {{ $post->title }}
+    {{-- {{ $post->title }} --}}
 @endsection
 
 
 
 @section('content')
+
+@if($post)
 
             @if (Session::has('post-updated'))
                 <div class="p-5 mb-7 bg-green-400 rounded text-white">
@@ -61,6 +63,8 @@
             @endforeach
         
     </div>
+
+@endif
 @endsection
 
 

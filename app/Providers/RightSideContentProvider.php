@@ -28,7 +28,7 @@ class RightSideContentProvider extends ServiceProvider
      */
     public function boot()
     {
-        $this->posts = Post::orderBy('id', 'desc')->take(10)->get();
+        $this->posts = Post::where('is_approved', 1)->orderBy('id', 'desc')->take(10)->get();
 
         view()->composer('layouts.master', function($view){
             $view->with(['posts' => $this->posts]);
