@@ -33,7 +33,7 @@ class HomePostController extends Controller
 
     public function view_category($id){
 
-        $posts = Post::where('category_id', $id)->orderBy('id', 'desc')->paginate(1);
+        $posts = Post::where('category_id', $id)->orderBy('id', 'desc')->paginate(5);
 
 
         //return($posts);

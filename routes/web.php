@@ -17,11 +17,11 @@ use App\Http\Controllers\CategoryController;
 
 */
 
-Route::get('/', [HomePostController::class, 'index'])->name('home.index');
+Route::get('/home', [HomePostController::class, 'index'])->name('home.index');
 
 Route::get('/public/post/{id}', [HomePostController::class, 'view_post'])->name('home.post.view');
 
-// Route::get('/{id}', [HomePostController::class, 'view_category'])->name('home.category.view');
+Route::get('/public/category/{id}', [HomePostController::class, 'view_category'])->name('home.category.view');
 
 
 

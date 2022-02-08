@@ -4,7 +4,7 @@
 
 @section('mainContent')
 
-        @if($posts)
+        @if(count($posts) > 0)
             
             @foreach ($posts as $post) 
 

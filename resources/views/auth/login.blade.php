@@ -17,7 +17,7 @@
             <h2 class="text-white font-bold text-xl">Blog Project</h2>
             <nav class="ml-auto">
                 @if (!Auth::check())
-                    <a href="{{ url('/') }}" class="text-white hover:text-yellow-500 mr-5">Home</a>
+                    <a href="{{ url('/home') }}" class="text-white hover:text-yellow-500 mr-5">Home</a>
                     <a href="{{ route('login') }}" class="text-white hover:text-yellow-500 mr-5">Login</a>
                     <a href="{{ route('register') }}" class="text-white hover:text-yellow-500">Register</a>
                 @endif

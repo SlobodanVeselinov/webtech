@@ -10,12 +10,14 @@
             <label for="category" class="w-1/6">Post Category: </label>
             <select id="category" type="text" name="category" class="w-3/6">
                 @foreach ($categories as $category)
-                    <option name="category" 
-                            value="{{ $category->id }}"
-                            @if($post->category_id == $category->id)
-                                selected
-                            @endif
-                            >{{ $category->name }}</option>
+                    @if($category->order_number > 0)
+                        <option name="category" 
+                                value="{{ $category->id }}"
+                                @if($post->category_id == $category->id)
+                                    selected
+                                @endif
+                                >{{ $category->name }}</option>
+                        @endif
                 @endforeach
             </select>
             @error('category')

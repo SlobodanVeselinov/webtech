@@ -45,11 +45,15 @@
     {{-- NAVIGATION --}}
     <div class="w-full bg-slate-900">
         <div class="container bg-slate-900 md:mx-auto md:py-3 md:space-x-10 md:flex md:flex-row flex flex-col">
+            
             <a href="{{ route('home.index') }}" class=" text-white font-extralight pl-6 md:pl-3 hover:text-yellow-500">HOME</a>
             @foreach ($categories as $category)
-                <a href="" class=" text-white font-extralight pl-6 md:pl-3 hover:text-yellow-500">{{ $category->name }}</a>
+                <a href="{{ route('home.category.view', $category->id) }}" class=" text-white font-extralight pl-6 md:pl-3 hover:text-yellow-500">{{ $category->name }}</a>
             @endforeach
+            
         </div>
+
+        
     </div>
     {{-- NAVIGATION END --}}
 
@@ -76,7 +80,7 @@
             <div class="md:grid md:grid-cols-2 gap-5">
                 @foreach ($categories as $category)
                     <div class="">
-                        <a href="#" class="text-blue-800">
+                        <a href="{{ route('home.category.view', $category->id) }}" class="text-blue-800">
                             {{ $category->name }}
                            ( {{ count(DB::select('select * from posts where category_id ='.$category->id)) }} )
                         </a>

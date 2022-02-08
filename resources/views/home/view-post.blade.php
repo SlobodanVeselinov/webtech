@@ -12,7 +12,7 @@
             Posted by: {{ $post->user->name }} - {{ $post->created_at->diffForHumans() }}
         </span>  
         <p class="">
-            Category: <a href="" class="text-blue-600">{{ $post->category->name }}</a>
+            Category: <a href="{{ route('home.category.view', $post->category->id) }}" class="text-blue-600">{{ $post->category->name }}</a>
         </p> 
 
         <span class="flex mt-2">
@@ -47,7 +47,9 @@
             <button type="submit" name="submit" class="py-2 px-3 bg-blue-700 text-white">Post Comment</button>
         </form>
         @else
-            <p class="mb-10">You have to be registered or logged in to create a comment.</p>
+            <p class="mb-10">
+                You have to be registered and logged in to create a comment. Click here to <a href="{{ route('register') }}" class="text-blue-600">Register</a> or <a href="{{ route('login') }}" class="text-blue-600">Login</a>
+            </p>
         @endif
         
             <h1 class="text-2xl text-gray-800 mb-7">Comments ({{ count($post->comments) }})</h1>

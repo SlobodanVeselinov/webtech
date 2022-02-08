@@ -22,7 +22,7 @@
             
             {{-- LOGOUT BTN--}}
             <nav class="ml-auto">
-                <a href="{{ url('/') }}" class="text-white hover:text-yellow-500 mr-5">Home</a>
+                <a href="{{ url('/home') }}" class="text-white hover:text-yellow-500 mr-5">Home</a>
                 <a class="text-white px-3 hover:text-yellow-400" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                     <span class="border border-yellow-500 hover:bg-yellow-400 text-white p-2 rounded-md">Logout</span>
                 </a>
@@ -50,7 +50,7 @@
             {{-- ADMINISTRATOR MENU LINKS --}}
             @foreach(auth()->user()->roles as $role)
                 @if ($role->name == 'Administrator')
-                    <a class="text-slate-600 hover:bg-slate-600 hover:text-white p-2 rounded transition ease-in-out" href="">Admin Dashboard</a>
+                    <a class="text-slate-600 hover:bg-slate-600 hover:text-white p-2 rounded transition ease-in-out" href="#">Admin Dashboard</a>
                 @endif
             @endforeach
             {{-- ----------------------------------------- --}}

@@ -16,7 +16,9 @@
             <label for="category" class="w-1/6">Post Category: </label>
             <select id="category" type="text" name="category" class="w-3/6">
                 @foreach ($categories as $category)
+                    @if($category->order_number > 0)
                     <option name="category" value="{{ $category->id }}">{{ $category->name }}</option>
+                    @endif
                 @endforeach
             </select>
             @error('category')
