@@ -7,6 +7,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\HomePostController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\ReplyController;
 
 
 
@@ -16,6 +17,8 @@ use App\Http\Controllers\CategoryController;
 |--------------------------------------------------------------------------
 
 */
+
+Route::redirect('/', '/home');
 
 Route::get('/home', [HomePostController::class, 'index'])->name('home.index');
 
@@ -48,6 +51,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/post/{id}/edit', [PostsController::class, 'edit_post'])->name('edit.post');
     Route::post('/post/{id}/update', [PostsController::class, 'update_post'])->name('post.update');
     Route::post('/post/{post}/comment', [CommentController::class, 'store'])->name('comment.store');
+    Route::post('/comment/{id}/reply', [ReplyController::class, 'store'])->name('reply.store');
     
     
     Route::get('/user/{id}', [AdminController::class, 'show_user'])->name('show.user');
@@ -62,13 +66,5 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/categories', [CategoryController::class, 'create'])->name('category.create');
 
     });
-
-
-
-
-
-
-
-
 
 require __DIR__.'/auth.php';

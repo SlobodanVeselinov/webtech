@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Post;
 use App\Models\User;
+use App\Models\Reply;
 
 class Comment extends Model
 {
@@ -24,5 +25,10 @@ class Comment extends Model
 
     public function user(){
         return $this->belongsTo(User::class);
+    }
+
+
+    public function replies(){
+        return $this->hasMany(Reply::class);
     }
 }
