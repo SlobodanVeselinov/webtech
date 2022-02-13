@@ -14,6 +14,16 @@
     <div class="w-full bg-slate-900 p-5">
         <div class="container sm:mx-auto flex">
             <div class="flex text-white font-bold text-xl">
+
+                {{-- Hamburger menu on small screen --}}
+                <span class="text-white md:hidden mr-2">
+                    <a href="#" class="btn">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                    </a>
+                </span>
+
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 10l-2 1m0 0l-2-1m2 1v2.5M20 7l-2 1m2-1l-2-1m2 1v2.5M14 4l-2-1-2 1M4 7l2-1M4 7l2 1M4 7v2.5M12 21l-2-1m2 1l2-1m-2 1v-2.5M6 18l-2-1v-2.5M18 18l2-1v-2.5" />
                 </svg>
@@ -41,13 +51,14 @@
         
         {{-- SIDE BAR --}}
         
-        <div class="flex flex-col sm:text-right p-5 sm:border-r-2 border-slate-600 col-span-2">
+        <div class="hidden menu flex flex-col md:flex  md:text-right md:p-5 md:border-r-2 border-slate-600 md:col-span-2">
             <div class=" w-36 h-36 bg-slate-600 rounded-full ml-auto">
                 <img src="{{ asset('images/' . Auth::User()->image) }}" alt="" class="w-36 h-36 rounded-full ml-auto">
             </div>
-            <h2 class="text-lg font-bold text-slate-700 mt-7 mb-14">{{ Auth::User()->name }}</h2>
+            <h2 class="text-lg font-bold text-slate-700 mt-7 mb-14 p-5">{{ Auth::User()->name }}</h2>
             
             {{-- ADMINISTRATOR MENU LINKS --}}
+            
             @foreach(auth()->user()->roles as $role)
                 @if ($role->name == 'Administrator')
                     <a class="text-slate-600 hover:bg-slate-600 hover:text-white p-2 rounded transition ease-in-out" href="#">Admin Dashboard</a>
@@ -94,5 +105,17 @@
         </div>
     </div>
     
+    {{-- JavaScript code for the hamburger menu button on small screen sizes --}}
+    <script>
+        // Grab HTML Elements
+        const btn = document.querySelector(".btn");
+        const menu = document.querySelector(".menu");
+
+        // Add Event Listeners
+        btn.addEventListener("click", () => {
+        menu.classList.toggle("hidden");
+        });
+    </script>
+
 </body>
 </html>

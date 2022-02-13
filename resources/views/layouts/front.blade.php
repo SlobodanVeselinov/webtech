@@ -15,6 +15,16 @@
     <div class="w-full bg-slate-900 p-5">
         <div class="container sm:mx-auto flex">
             <div class="flex text-white font-bold text-xl">
+
+                {{-- Hamburger menu on small screen --}}
+                <span class="text-white md:hidden mr-2">
+                    <a href="#" class="btn">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                    </a>
+                </span>
+
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 10l-2 1m0 0l-2-1m2 1v2.5M20 7l-2 1m2-1l-2-1m2 1v2.5M14 4l-2-1-2 1M4 7l2-1M4 7l2 1M4 7v2.5M12 21l-2-1m2 1l2-1m-2 1v-2.5M6 18l-2-1v-2.5M18 18l2-1v-2.5" />
                 </svg>
@@ -36,6 +46,9 @@
                         @csrf
                     </form>
                 @endif
+
+                
+
             </nav>
         </div>
     </div>
@@ -43,7 +56,7 @@
     
 
     {{-- NAVIGATION --}}
-    <div class="w-full bg-slate-900">
+    <div class="w-full bg-slate-900 hidden md:flex menu">
         <div class="container bg-slate-900 md:mx-auto md:py-3 md:space-x-10 md:flex md:flex-row flex flex-col">
             
             <a href="{{ route('home.index') }}" class=" text-white font-extralight pl-6 md:pl-3 hover:text-yellow-500">HOME</a>
@@ -92,5 +105,20 @@
         
     </div>
     {{-- MAIN AREA ENDS --}}
+
+
+
+    {{-- JavaScript code for the hamburger menu button on small screen sizes --}}
+    <script>
+        // Grab HTML Elements
+        const btn = document.querySelector(".btn");
+        const menu = document.querySelector(".menu");
+
+        // Add Event Listeners
+        btn.addEventListener("click", () => {
+        menu.classList.toggle("hidden");
+        });
+    </script>
+
 </body>
 </html>

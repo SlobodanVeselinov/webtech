@@ -75,6 +75,11 @@ class PostsController extends Controller
         $post = Post::find($id);
 
         if($request->image){
+
+            if($post->image){
+                unlink('images/posts/'.$post->image);
+            }
+
             $newImageName = time() . '.' . $request->image->extension(); 
 
             $request->image->move(public_path('images/posts'), $newImageName);

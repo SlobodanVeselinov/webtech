@@ -51,13 +51,62 @@
             <button type="submit" name="submit" class="py-2 px-3 bg-blue-700 text-white">Post Comment</button>
         </form>
         
-            <h1 class="text-2xl text-gray-800 mb-7">Comments ({{ count($post->comments) }})</h1>
+            {{-- <h1 class="text-2xl text-gray-800 mb-7">Comments ({{ count($post->comments) }})</h1>
           
             @foreach ($post->comments as $comment)
                 <div class="p-3 mb-7 border-2">
                     <span class="text-sm italic text-blue-700">{{ $comment->user->name }} commented::</span>
                     <p class="mb-5">{{ $comment->body }}</p>       
                     <span class="text-sm italic">{{ $comment->created_at->diffForHumans() }}</span>
+                </div>  
+                <hr>  
+            @endforeach --}}
+
+
+            <h1 class="text-2xl text-gray-800 mb-7">Comments ({{ count($post->comments) }})</h1>
+          
+            @foreach ($post->comments as $comment)
+                <div class="p-3 mb-7 border-2">
+                    <div class="flex">
+                        <div>
+                            @if($comment->user->image)
+                                <img class="h-16" src="{{ asset('images/'.$comment->user->image)}}" />
+                            @endif
+                        </div>
+                        <div class="ml-5">
+                            <span class="text-sm text-blue-800">{{ $comment->user->name }} commented </span>
+                            <span class="text-sm italic">{{ $comment->created_at->diffForHumans() }}</span>
+                            <p class="mb-10">{{ $comment->body }}</p>   
+
+                            
+                            {{-- Comment reply section --}}
+                            
+                            @if (count($comment->replies) > 0)
+                                @foreach ($comment->replies as $reply)
+                                    <div class="flex mt-5">
+                                        <div>
+                                            @if($reply->user->image)
+                                                <img class="h-16" src="{{ asset('images/'.$reply->user->image)}}" />
+                                            @endif
+                                        </div>
+                                        <div class="ml-5">
+                                            <span class="text-sm text-blue-800">{{ $reply->user->name }} replied </span>
+                                            <span class="text-sm italic">{{ $reply->created_at->diffForHumans() }}</span>
+                                            <p class="mb-5">{{ $reply->body }}</p> 
+                                        </div>
+                                    </div>
+                                @endforeach
+                            @endif
+                            @if(Auth::check())
+                                <form method="post" action="{{ route('reply.store', $comment->id) }}" class="mb-10">
+                                    @csrf
+                                    <input class="w-full mb-5" type="text" name="reply" placeholder="reply to this comment....">
+                                    <button type="submit" name="submit" class="py-2 px-3 bg-blue-700 text-white">Reply</button>
+                                </form>
+                            @endif
+                        </div>
+                    </div>
+                    
                 </div>  
                 <hr>  
             @endforeach

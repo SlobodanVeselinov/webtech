@@ -85,7 +85,7 @@
                                             @endif
                                         </div>
                                         <div class="ml-5">
-                                            <span class="text-sm text-blue-800">{{ $reply->user->name }} commented </span>
+                                            <span class="text-sm text-blue-800">{{ $reply->user->name }} replied </span>
                                             <span class="text-sm italic">{{ $reply->created_at->diffForHumans() }}</span>
                                             <p class="mb-5">{{ $reply->body }}</p> 
                                         </div>

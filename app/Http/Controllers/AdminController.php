@@ -86,6 +86,10 @@ class AdminController extends Controller
 
 
         if($request->image){
+            if($user->image){
+                unlink('images/'.$user->image);
+            }
+            
             $newImageName = time() . '-' . $user->id . '.' . $request->image->extension(); 
 
             $request->image->move(public_path('images'), $newImageName);
