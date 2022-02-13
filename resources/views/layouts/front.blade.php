@@ -71,7 +71,7 @@
     {{-- NAVIGATION END --}}
 
     {{-- MAIN AREA --}}
-    <div class="container mx-auto lg:grid lg:grid-cols-12 lg:mt-20">
+    <div class="container mx-auto lg:grid lg:grid-cols-12 lg:mt-20 min-h-screen">
 
         {{-- MAIN SECTION --}}
         <div class="md:grid md:col-span-8 p-3 text-justify text-lg">
@@ -110,6 +110,7 @@
     </div>
     {{-- MAIN AREA ENDS --}}
 
+    @include('includes.footer')
 
 
     {{-- JavaScript code for the hamburger menu button on small screen sizes --}}

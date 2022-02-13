@@ -47,7 +47,7 @@
 
     {{-- MAIN AREA --}}
 
-    <div class="container sm:mx-auto sm:grid sm:grid-cols-12 mt-5">
+    <div class="container sm:mx-auto sm:grid sm:grid-cols-12 mt-5 min-h-screen">
         
         {{-- SIDE BAR --}}
         
@@ -105,6 +105,10 @@
 
         </div>
     </div>
+
+
+
+    @include('includes.footer')
     
     {{-- JavaScript code for the hamburger menu button on small screen sizes --}}
     <script>
