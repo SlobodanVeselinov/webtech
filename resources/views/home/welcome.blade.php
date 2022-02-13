@@ -38,7 +38,16 @@
 
         </div>
         @empty
-            <h1 class="text-gray-800 text-2xl mb-5">No posts yet. Be first one to create a post. First login or register!</h1>
+            <h1 class="text-gray-800 text-2xl mb-5">No posts yet. Be first one to create a post. 
+                @if (!Auth::check())
+                    First login or register!    
+                @endif
+
+                @if (Auth::check())
+                    Click <a href="/create-post" class="text-blue-600">HERE</a> to create post!    
+                @endif
+
+            </h1>
         @endforelse
     {{ $posts->links() }}
 
