@@ -14,7 +14,7 @@ class CreateIsApprovedColumnToPostsTable extends Migration
     public function up()
     {
         Schema::table('posts', function (Blueprint $table) {
-            $table->integer('is_approved')->default(0);
+            $table->integer('is_approved')->default(1);
         });
     }
 

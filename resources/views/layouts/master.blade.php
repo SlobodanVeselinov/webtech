@@ -53,7 +53,11 @@
         
         <div class="hidden menu flex flex-col md:flex  md:text-right md:p-5 md:border-r-2 border-slate-600 md:col-span-2">
             <div class=" w-36 h-36 bg-slate-600 rounded-full ml-auto">
-                <img src="{{ asset('images/' . Auth::User()->image) }}" alt="" class="w-36 h-36 rounded-full ml-auto">
+                @if (Auth::user()->image)
+                    <img src="{{ asset('images/' . Auth::User()->image) }}" alt="" class="w-36 h-36 rounded-full ml-auto">
+                @else
+                    <img src="https://i.pravatar.cc/150" class="w-36 h-36 rounded-full ml-auto" >        
+                @endif
             </div>
             <h2 class="text-lg font-bold text-slate-700 mt-7 mb-14">{{ Auth::User()->name }}</h2>
             
@@ -72,6 +76,7 @@
             <a class="text-slate-600 hover:bg-slate-600 hover:text-white p-2 rounded transition ease-in-out" href="{{ route('profile.settings', Auth::User()->id) }}">Profile Settings</a>
 
             {{-- ADMINISTRATOR MENU LINKS --}}
+            @foreach(auth()->user()->roles as $role)
                 @if ($role->name == 'Administrator')
                     <a class="text-slate-600 hover:bg-slate-600 hover:text-white p-2 rounded transition ease-in-out" href="{{ route('users.get') }}">View registered users</a>
                     <a class="text-slate-600 hover:bg-slate-600 hover:text-white p-2 rounded transition ease-in-out" href="{{ route('category.index') }}">View categories</a>
@@ -80,6 +85,7 @@
                         ( {{ count(DB::select('select * from posts where is_approved = 0')) }} )
                     </a>
                 @endif
+            @endforeach
             {{-- ----------------------------------------- --}}    
         </div>
 

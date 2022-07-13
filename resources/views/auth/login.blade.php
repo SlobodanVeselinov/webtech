@@ -45,6 +45,12 @@
 
         <!-- Validation Errors -->
         <x-auth-validation-errors class="mb-4" :errors="$errors" />
+        <h3 class="text-lg font-semibold mb-3">You can login as Administrator or you can create your own account</h3>
+
+        <h2 class="font-bold">Administrator login credentials:</h2>
+        <p>email: admin@admin.com</p>
+        <p class="mb-5">Password: administrator</p>
+
 
         <form method="POST" action="{{ route('login') }}">
             @csrf

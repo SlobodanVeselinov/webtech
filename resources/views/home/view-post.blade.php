@@ -24,6 +24,8 @@
 
         @if ($post->image)
             <img src="{{ asset('images/posts/'.$post->image) }}" class="h-80 ring-offset-2 ring-2 ring-slate-800 mt-10">
+        @else
+        <img src="https://picsum.photos/400/300">
         @endif
         
         <p class="mt-8 mb-8">{{ $post->body }}</p>
@@ -66,6 +68,8 @@
                         <div>
                             @if($comment->user->image)
                                 <img class="h-16" src="{{ asset('images/'.$comment->user->image)}}" />
+                            @else
+                                <img src="https://i.pravatar.cc/50" >
                             @endif
                         </div>
                         <div class="ml-5">
@@ -82,6 +86,8 @@
                                         <div>
                                             @if($reply->user->image)
                                                 <img class="h-16" src="{{ asset('images/'.$reply->user->image)}}" />
+                                                @else
+                                                <img src="https://i.pravatar.cc/50" >
                                             @endif
                                         </div>
                                         <div class="ml-5">

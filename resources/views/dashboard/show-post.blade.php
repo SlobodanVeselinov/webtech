@@ -22,6 +22,8 @@
     <p>Category: {{ $post->category->name }}</p>
     @if($post->image)
         <img src="{{ asset('images/posts/'.$post->image) }}" class="mt-10 md:h-96 shadow-xl">
+    @else
+        <img src="https://picsum.photos/400/300">
     @endif
     <p class="mt-10">{{ $post->body }}</p>
     

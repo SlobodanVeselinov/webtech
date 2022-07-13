@@ -12,6 +12,8 @@
                 <div class="col-span-4">
                     @if ($post->image)
                         <img src="{{ asset('images/posts/'.$post->image) }}" class="h-60 ring-offset-2 ring-2 ring-slate-800">
+                    @else
+                    <img src="https://picsum.photos/400/300">
                     @endif
                     
                 </div>
